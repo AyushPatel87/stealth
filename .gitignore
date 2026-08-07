@@ -1,0 +1,19 @@
+node_modules/
+dist/
+build/
+.next/
+out/
+coverage/
+*.tsbuildinfo
+
+.env
+.env.local
+.env.*.local
+
+.DS_Store
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Recorded provider fixtures may contain large payloads; keep curated ones only.
+packages/data/fixtures/scratch/

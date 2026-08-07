@@ -1,0 +1,17 @@
+{
+  "name": "@stealth/core",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Pure domain engine: options pricing, technical indicators, strategy scanners, scoring. No I/O, no network, no database.",
+  "exports": {
+    ".": "./src/index.ts",
+    "./math": "./src/math/index.ts",
+    "./options": "./src/options/index.ts",
+    "./indicators": "./src/indicators/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "build": "tsc -p tsconfig.build.json"
+  }
+}
