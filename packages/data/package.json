@@ -1,0 +1,16 @@
+{
+  "name": "@stealth/data",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Market and options data layer: provider abstraction, normalisation, caching, rate limiting.",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@stealth/core": "workspace:*"
+  }
+}

@@ -23,6 +23,12 @@ importers:
 
   packages/core: {}
 
+  packages/data:
+    dependencies:
+      '@stealth/core':
+        specifier: workspace:*
+        version: link:../core
+
 packages:
 
   '@babel/helper-string-parser@7.29.7':
