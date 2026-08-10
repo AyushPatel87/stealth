@@ -55,3 +55,41 @@ export {
   type RateLimiterOptions,
   type RetryOptions,
 } from './rate-limit.js';
+
+export {
+  enrichContract,
+  enrichContracts,
+  type EnrichmentContext,
+  type EnrichmentStats,
+} from './greeks-enricher.js';
+
+export {
+  YahooProvider,
+  YAHOO_CAPABILITIES,
+  type YahooProviderOptions,
+} from './providers/yahoo/yahoo-provider.js';
+
+export {
+  createYahooClient,
+  type RealYahooClientOptions,
+} from './providers/yahoo/real-client.js';
+
+export {
+  YAHOO_PROVIDER_ID,
+  normalizeQuote,
+  normalizeBars,
+  normalizeContract,
+  normalizeEarnings,
+  inferEarningsTiming,
+  optionalNumber,
+  buildProvenance,
+} from './providers/yahoo/normalize.js';
+
+export type {
+  YahooClient,
+  YahooCallOrPut,
+  YahooOptionsResult,
+  YahooChartResult,
+  YahooQuoteLike,
+  YahooQuoteSummaryResult,
+} from './providers/yahoo/wire.js';

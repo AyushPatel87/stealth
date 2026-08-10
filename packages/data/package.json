@@ -11,6 +11,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@stealth/core": "workspace:*"
+    "@stealth/core": "workspace:*",
+    "yahoo-finance2": "^4.0.2"
   }
 }
