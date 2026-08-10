@@ -1,0 +1,26 @@
+# Local Postgres for development.
+#
+# Not required if you already run Postgres 16 locally - point DATABASE_URL at
+# your own instance instead. The MVP deliberately depends on nothing else: no
+# Redis, no message broker. The worker uses Postgres for both state and
+# scheduling.
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: stealth-postgres
+    environment:
+      POSTGRES_USER: stealth
+      POSTGRES_PASSWORD: stealth
+      POSTGRES_DB: stealth
+    ports:
+      - '5432:5432'
+    volumes:
+      - stealth-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U stealth -d stealth']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  stealth-pgdata:

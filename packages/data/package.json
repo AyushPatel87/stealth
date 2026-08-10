@@ -8,10 +8,20 @@
     ".": "./src/index.ts"
   },
   "scripts": {
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "db:push": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
     "@stealth/core": "workspace:*",
+    "drizzle-orm": "^0.45.2",
+    "pg": "^8.23.0",
     "yahoo-finance2": "^4.0.2"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.21.0",
+    "drizzle-kit": "^0.31.10"
   }
 }
