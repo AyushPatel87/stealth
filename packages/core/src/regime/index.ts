@@ -1,0 +1,17 @@
+export {
+  classifyMarketRegime,
+  regimeMultiplier,
+  DEFAULT_REGIME_WEIGHTS,
+  DEFAULT_REGIME_THRESHOLDS,
+  DEFAULT_REGIME_BIAS,
+  type RegimeLabel,
+  type RegimeInputs,
+  type RegimeWeights,
+  type RegimeThresholds,
+  type RegimeComponent,
+  type RegimeAssessment,
+  type RegimeBias,
+  type IndexSnapshot,
+  type VixSnapshot,
+  type StrategyKey,
+} from './market-regime.js';
