@@ -112,13 +112,40 @@ export function daysToExpiry(now: Date, expiration: Date): number {
 }
 
 /**
- * Whole days until expiry, for display. Rounds UP so that a contract expiring
- * later today reads as "1 DTE" rather than "0 DTE" while it is still tradeable,
- * and returns 0 only once it has actually expired.
+ * Whole days until expiry, for display.
+ *
+ * Counts the difference between CALENDAR DATES in market time, not elapsed
+ * hours. This matters twice over:
+ *
+ *  - A contract expiring today is 0 DTE. "0DTE" is the industry term for
+ *    same-day expiry, so any other answer reads as wrong to a trader.
+ *  - Aug 7 to Aug 21 is 14 DTE regardless of the time of day. Rounding elapsed
+ *    hours up would report 15 for most of the trading session, putting every
+ *    contract one day off the figure a broker shows.
+ *
+ * Since annualised yield scales by 365/DTE, a systematic off-by-one here would
+ * misstate every yield in the scanner by roughly 7% at two weeks out.
  */
 export function calendarDte(now: Date, expiration: Date): number {
-  const exact = daysToExpiry(now, expiration);
-  return exact <= 0 ? 0 : Math.ceil(exact);
+  const days =
+    (marketDateAsUtcMidnight(expiration) - marketDateAsUtcMidnight(now)) /
+    MS_PER_DAY;
+  return Math.max(0, Math.round(days));
+}
+
+/**
+ * The calendar date in New York, expressed as a UTC midnight, so two dates can
+ * be subtracted without timezone or DST interference.
+ */
+function marketDateAsUtcMidnight(instant: Date): number {
+  // 'en-CA' renders as YYYY-MM-DD.
+  const isoDate = new Intl.DateTimeFormat('en-CA', {
+    timeZone: US_MARKET_TIMEZONE,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).format(instant);
+  return Date.parse(`${isoDate}T00:00:00Z`);
 }
 
 /**

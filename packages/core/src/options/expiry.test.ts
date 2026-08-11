@@ -50,18 +50,31 @@ describe('daysToExpiry / calendarDte / yearsToExpiry', () => {
     expect(daysToExpiry(now, expiration)).toBeCloseTo(14, 10);
   });
 
-  it('reports whole days for display, rounding up while still tradeable', () => {
-    // Mid-session on expiration day: still 0.25 days of life left.
-    const duringExpiryDay = new Date('2026-08-21T14:00:00.000Z');
-    expect(calendarDte(duringExpiryDay, expiration)).toBe(1);
-
-    // Two and a bit days out reads as 3, not 2.
-    const twoAndABit = new Date('2026-08-19T02:00:00.000Z');
-    expect(daysToExpiry(twoAndABit, expiration)).toBeGreaterThan(2);
-    expect(calendarDte(twoAndABit, expiration)).toBe(3);
+  it('counts calendar dates in market time, matching broker convention', () => {
+    // Aug 7 to Aug 21 is 14 DTE at any time of day. Rounding elapsed hours up
+    // would report 15 through most of the session, one day off every broker.
+    const morning = new Date('2026-08-07T13:45:00.000Z');
+    const afternoon = new Date('2026-08-07T19:55:00.000Z');
+    expect(calendarDte(morning, expiration)).toBe(14);
+    expect(calendarDte(afternoon, expiration)).toBe(14);
   });
 
-  it('reports 0 DTE only once actually expired', () => {
+  it('reports same-day expiry as 0 DTE, the industry term', () => {
+    // Mid-session on expiration day, still tradeable with 0.25 days of life:
+    // a trader calls this 0DTE, and any other answer reads as wrong.
+    const duringExpiryDay = new Date('2026-08-21T14:00:00.000Z');
+    expect(calendarDte(duringExpiryDay, expiration)).toBe(0);
+    expect(daysToExpiry(duringExpiryDay, expiration)).toBeGreaterThan(0);
+  });
+
+  it('uses New York dates, not UTC dates', () => {
+    // 02:00 UTC on Aug 20 is still 22:00 on Aug 19 in New York, so this is
+    // 2 DTE, not 1.
+    const lateEveningNy = new Date('2026-08-20T02:00:00.000Z');
+    expect(calendarDte(lateEveningNy, expiration)).toBe(2);
+  });
+
+  it('reports 0 once expired and clamps thereafter', () => {
     const afterClose = new Date('2026-08-21T20:00:00.001Z');
     expect(calendarDte(afterClose, expiration)).toBe(0);
     expect(yearsToExpiry(afterClose, expiration)).toBe(0);
@@ -93,7 +106,7 @@ describe('daysToExpiry / calendarDte / yearsToExpiry', () => {
     expect(daysToExpiry(start, end)).toBeCloseTo(14 - 1 / 24, 10);
     expect((end.getTime() - start.getTime()) / 3_600_000).toBe(335);
 
-    // Display still rounds to the intuitive whole number.
+    // Display counts calendar dates, so it reads the intuitive 14.
     expect(calendarDte(start, end)).toBe(14);
   });
 
@@ -102,6 +115,7 @@ describe('daysToExpiry / calendarDte / yearsToExpiry', () => {
     const start = expirationInstant('2026-10-30');
     const end = expirationInstant('2026-11-13');
     expect((end.getTime() - start.getTime()) / 3_600_000).toBe(337);
-    expect(calendarDte(start, end)).toBe(15);
+    // 14 calendar dates apart, despite 337 elapsed hours.
+    expect(calendarDte(start, end)).toBe(14);
   });
 });
