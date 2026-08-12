@@ -22,3 +22,30 @@ export {
   type CspOutcome,
   type CspScanSummary,
 } from './csp.js';
+
+export {
+  evaluateCoveredCall,
+  scanCoveredCalls,
+  DEFAULT_CC_CONFIG,
+  DEFAULT_CC_WEIGHTS,
+  type CoveredCallConfig,
+  type CoveredCallWeights,
+  type CoveredCallMetrics,
+  type CoveredCallCandidate,
+  type CoveredCallOutcome,
+  type CoveredCallScanSummary,
+  type Holding,
+} from './covered-call.js';
+
+export {
+  evaluateCreditSpread,
+  scanCreditSpreads,
+  DEFAULT_SPREAD_CONFIG,
+  DEFAULT_SPREAD_WEIGHTS,
+  type CreditSpreadConfig,
+  type CreditSpreadWeights,
+  type CreditSpreadMetrics,
+  type CreditSpreadCandidate,
+  type CreditSpreadOutcome,
+  type CreditSpreadScanSummary,
+} from './credit-spread.js';
