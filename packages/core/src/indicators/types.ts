@@ -26,8 +26,14 @@ export interface Bar {
   /** Split-adjusted close. The basis for all indicators here. */
   readonly close: number;
   readonly volume: number;
-  /** Split- AND dividend-adjusted close, when the provider supplies it. */
-  readonly adjClose?: number | undefined;
+  /**
+   * Split- AND dividend-adjusted close, when the provider supplies it.
+   *
+   * Accepts null as well as undefined: providers report "unavailable" as an
+   * explicit null, and forcing the data layer to strip that out before every
+   * call would be a mapping step that exists only to satisfy a type.
+   */
+  readonly adjClose?: number | null | undefined;
 }
 
 /**

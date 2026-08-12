@@ -12,12 +12,14 @@
     "test:watch": "vitest",
     "typecheck": "pnpm -r typecheck",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "scan": "vite-node apps/cli/src/scan.ts --"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",
     "@vitest/coverage-v8": "^4.1.10",
     "typescript": "^5.7.2",
+    "vite-node": "^6.0.0",
     "vitest": "^4.1.10"
   }
 }

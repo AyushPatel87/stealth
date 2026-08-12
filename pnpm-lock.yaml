@@ -17,9 +17,21 @@ importers:
       typescript:
         specifier: ^5.7.2
         version: 5.9.3
+      vite-node:
+        specifier: ^6.0.0
+        version: 6.0.0(@types/node@22.20.1)(esbuild@0.28.2)(tsx@4.23.12)
       vitest:
         specifier: ^4.1.10
         version: 4.1.10(@types/node@22.20.1)(@vitest/coverage-v8@4.1.10)(vite@8.2.1(@types/node@22.20.1)(esbuild@0.28.2)(tsx@4.23.12))
+
+  apps/cli:
+    dependencies:
+      '@stealth/core':
+        specifier: workspace:*
+        version: link:../../packages/core
+      '@stealth/data':
+        specifier: workspace:*
+        version: link:../../packages/data
 
   packages/core: {}
 
@@ -739,6 +751,10 @@ packages:
   bytes@3.1.2:
     resolution: {integrity: sha512-/Nf7TyzTx6S3yRJObOAV7956r8cr2+Oj8AC5dt8wSP3BQAoeX58NoHyCU8P8zGkNXStjTSi6fzO6F0pBdcYbEg==}
     engines: {node: '>= 0.8'}
+
+  cac@7.0.0:
+    resolution: {integrity: sha512-tixWYgm5ZoOD+3g6UTea91eow5z6AAHaho3g0V9CNSNb45gM8SmflpAc+GRd1InC4AqN/07Unrgp56Y94N9hJQ==}
+    engines: {node: '>=20.19.0'}
 
   call-bind-apply-helpers@1.0.2:
     resolution: {integrity: sha512-Sp1ablJ0ivDkSzjcaJdxEunN5/XvksFJ2sMBFfq6x0ryhQV/2b/KwFe21cMpmHtPOSij8K99/wSfoEuTObmuMQ==}
@@ -1498,6 +1514,11 @@ packages:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
     engines: {node: '>= 0.8'}
 
+  vite-node@6.0.0:
+    resolution: {integrity: sha512-oj4PVrT+pDh6GYf5wfUXkcZyekYS8kKPfLPXVl8qe324Ec6l4K2DUKNadRbZ3LQl0qGcDz+PyOo7ZAh00Y+JjQ==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    hasBin: true
+
   vite@8.2.1:
     resolution: {integrity: sha512-EU/eS7BH3XROHh2YnBefjM6DBKA6ZeMZEYQbj7NLWg5wHYlhB8B/Mayd5XsgWq+NFYccDOTemRpdETWR6Ka/lw==}
     engines: {node: ^20.19.0 || >=22.12.0}
@@ -2073,6 +2094,8 @@ snapshots:
   buffer-from@1.1.2: {}
 
   bytes@3.1.2: {}
+
+  cac@7.0.0: {}
 
   call-bind-apply-helpers@1.0.2:
     dependencies:
@@ -2771,6 +2794,27 @@ snapshots:
   unpipe@1.0.0: {}
 
   vary@1.1.2: {}
+
+  vite-node@6.0.0(@types/node@22.20.1)(esbuild@0.28.2)(tsx@4.23.12):
+    dependencies:
+      cac: 7.0.0
+      es-module-lexer: 2.3.1
+      obug: 2.1.4
+      pathe: 2.0.3
+      vite: 8.2.1(@types/node@22.20.1)(esbuild@0.28.2)(tsx@4.23.12)
+    transitivePeerDependencies:
+      - '@types/node'
+      - '@vitejs/devtools'
+      - esbuild
+      - jiti
+      - less
+      - sass
+      - sass-embedded
+      - stylus
+      - sugarss
+      - terser
+      - tsx
+      - yaml
 
   vite@8.2.1(@types/node@22.20.1)(esbuild@0.28.2)(tsx@4.23.12):
     dependencies:
