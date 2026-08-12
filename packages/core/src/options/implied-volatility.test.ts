@@ -1,10 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { blackScholesPrice, type OptionRight } from './black-scholes.js';
+import { blackScholesPrice, type OptionRight } from './black-scholes';
 import {
   impliedVolatility,
   priceBounds,
   type ImpliedVolInputs,
-} from './implied-volatility.js';
+} from './implied-volatility';
 
 /**
  * The strongest test for a root-finder is a round trip: price at a known

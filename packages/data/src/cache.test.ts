@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { CACHE_TTL_MS, TtlCache, cacheKey } from './cache.js';
+import { CACHE_TTL_MS, TtlCache, cacheKey } from './cache';
 
 /** Manually advanced clock, so expiry is tested without fake timers. */
 function testClock(start = 1_000_000) {

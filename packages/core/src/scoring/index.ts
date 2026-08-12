@@ -7,4 +7,4 @@ export {
   type ScoreResult,
   type RawComponent,
   type AssembleOptions,
-} from './score.js';
+} from './score';

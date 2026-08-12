@@ -1,0 +1,445 @@
+/*
+ * Design system.
+ *
+ * The brief was explicit about what to avoid, so the constraints are stated
+ * here rather than left implicit:
+ *
+ *   - No rounded cards. Structure comes from hairline rules and alignment, the
+ *     way a terminal does it, not from floating panels with shadows.
+ *   - No decorative gradients, no glassmorphism, no purple.
+ *   - Colour carries meaning ONLY. Green is favourable, red is risk, amber is
+ *     caution, and a single desaturated gold marks the product's own chrome.
+ *     Nothing is coloured because it looks nice.
+ *   - The ground is a warm near-black, not the blue-black that every dark
+ *     dashboard defaults to. It reads as an instrument, not a website.
+ *   - Density over whitespace. Row height is 26px so a full screen shows fifty
+ *     opportunities without scrolling.
+ */
+
+:root {
+  /* Ground: warm near-black, deliberately not blue-tinted. */
+  --bg-0: #0b0b0d;
+  --bg-1: #101013;
+  --bg-2: #16161a;
+  --bg-3: #1d1d22;
+
+  /* Hairlines do the structural work that borders and shadows would. */
+  --line: #26262c;
+  --line-strong: #34343c;
+
+  --text-0: #f2f0ec;
+  --text-1: #b6b3ac;
+  --text-2: #7d7a74;
+  --text-3: #56534e;
+
+  /* Semantic only. */
+  --good: #3ddc91;
+  --good-dim: #1f6b4a;
+  --bad: #ff5f52;
+  --bad-dim: #7a2b26;
+  --warn: #f2b23e;
+  --warn-dim: #7a5a1c;
+
+  /* Product chrome. One accent, desaturated so it never competes with data. */
+  --accent: #c9a227;
+  --accent-dim: #6b5615;
+
+  --mono: ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace;
+  --sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --row-h: 26px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-0);
+  color: var(--text-0);
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Every number is tabular so columns align and digits do not jitter on update. */
+.num {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+}
+
+.good { color: var(--good); }
+.bad { color: var(--bad); }
+.warn { color: var(--warn); }
+.muted { color: var(--text-2); }
+.dim { color: var(--text-3); }
+
+/* --- Chrome ------------------------------------------------------------- */
+
+.shell {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.brandbar {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  height: 34px;
+  padding: 0 14px;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-1);
+}
+
+.wordmark {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+
+.wordmark span {
+  color: var(--text-3);
+  letter-spacing: 0.18em;
+  font-weight: 500;
+}
+
+/* Market tape: a horizontal strip, not a row of metric cards. */
+.tape {
+  display: flex;
+  align-items: stretch;
+  height: 46px;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-1);
+  overflow-x: auto;
+}
+
+.tape-cell {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 16px;
+  border-right: 1px solid var(--line);
+  white-space: nowrap;
+  min-width: 92px;
+}
+
+.tape-label {
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.tape-value {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.tape-regime {
+  min-width: 210px;
+  background: var(--bg-2);
+}
+
+.regime-chip {
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+/* --- Workspace ---------------------------------------------------------- */
+
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 420px;
+  min-height: 0;
+  overflow: hidden;
+}
+
+@media (max-width: 1100px) {
+  .workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .detail {
+    display: none;
+  }
+}
+
+.main {
+  /* Flex rather than a fixed grid: the number of children varies with how many
+     notices are showing, and a fixed row template put the 1fr on the wrong row
+     and left a dead band above the table. */
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  border-right: 1px solid var(--line);
+}
+
+.main > .tabs,
+.main > .notice,
+.main > .scanbar {
+  flex: none;
+}
+
+.tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-1);
+}
+
+.tab {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  border-right: 1px solid var(--line);
+  border-bottom: 2px solid transparent;
+  color: var(--text-2);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  padding: 8px 18px;
+  cursor: pointer;
+  transition: color 120ms ease, border-color 120ms ease;
+}
+
+.tab:hover { color: var(--text-0); }
+
+.tab[data-active='true'] {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  background: var(--bg-2);
+}
+
+.tab-count {
+  color: var(--text-3);
+  margin-left: 7px;
+}
+
+.scanbar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 6px 14px;
+  border-bottom: 1px solid var(--line);
+  font-size: 11px;
+  color: var(--text-2);
+  font-family: var(--mono);
+}
+
+.tablewrap {
+  flex: 1 1 auto;
+  overflow: auto;
+  min-height: 0;
+}
+
+table.grid {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 12px;
+}
+
+table.grid thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--bg-1);
+  border-bottom: 1px solid var(--line-strong);
+  color: var(--text-3);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: right;
+  padding: 6px 10px;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+}
+
+table.grid thead th:first-child { text-align: left; }
+table.grid thead th:hover { color: var(--text-1); }
+table.grid thead th[data-sorted='true'] { color: var(--accent); }
+
+table.grid tbody tr {
+  height: var(--row-h);
+  border-bottom: 1px solid var(--bg-2);
+  cursor: pointer;
+}
+
+table.grid tbody tr:hover { background: var(--bg-2); }
+
+table.grid tbody tr[data-selected='true'] {
+  background: var(--bg-3);
+  box-shadow: inset 2px 0 0 var(--accent);
+}
+
+table.grid td {
+  padding: 0 10px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+table.grid td:first-child {
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-0);
+}
+
+.ticker { color: var(--text-0); font-weight: 700; }
+
+/* Score is the primary signal, so it gets weight the other columns do not. */
+.score {
+  font-weight: 700;
+  font-size: 13px;
+}
+
+/* --- Detail rail -------------------------------------------------------- */
+
+.detail {
+  overflow: auto;
+  background: var(--bg-1);
+  min-height: 0;
+}
+
+.detail-head {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.detail-title {
+  font-family: var(--mono);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.detail-sub {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-2);
+  margin-top: 2px;
+}
+
+.section {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.section-label {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin-bottom: 9px;
+}
+
+.bigscore {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-family: var(--mono);
+}
+
+.bigscore b {
+  font-size: 34px;
+  line-height: 1;
+  font-weight: 700;
+}
+
+/* Score component bars: the breakdown IS the computation, so it is rendered
+   as a proportion actually earned rather than a decorative meter. */
+.component {
+  display: grid;
+  grid-template-columns: 1fr 64px;
+  gap: 10px;
+  align-items: start;
+  margin-bottom: 10px;
+}
+
+.component-name {
+  font-size: 11px;
+  color: var(--text-1);
+}
+
+.component-detail {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--text-3);
+}
+
+.meter {
+  height: 3px;
+  background: var(--bg-3);
+  margin: 4px 0 5px;
+  overflow: hidden;
+}
+
+.meter i {
+  display: block;
+  height: 100%;
+  background: var(--good);
+}
+
+.component-value {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 11px;
+  text-align: right;
+  color: var(--text-1);
+  padding-top: 1px;
+}
+
+.factor {
+  display: flex;
+  gap: 7px;
+  font-size: 11px;
+  margin-bottom: 3px;
+  align-items: flex-start;
+}
+
+.factor-mark { font-family: var(--mono); flex: none; }
+
+/* --- Empty / error states ----------------------------------------------- */
+
+.notice {
+  margin: 0;
+  padding: 8px 14px;
+  font-family: var(--mono);
+  font-size: 11px;
+  border-bottom: 1px solid var(--line);
+}
+
+.notice-warn {
+  background: rgba(242, 178, 62, 0.07);
+  color: var(--warn);
+  border-bottom-color: var(--warn-dim);
+}
+
+.notice-bad {
+  background: rgba(255, 95, 82, 0.07);
+  color: var(--bad);
+  border-bottom-color: var(--bad-dim);
+}
+
+.empty {
+  padding: 48px 20px;
+  text-align: center;
+  color: var(--text-2);
+  font-family: var(--mono);
+  font-size: 12px;
+}

@@ -8,7 +8,7 @@ import {
   NotSupportedError,
   isProviderError,
   isRetryable,
-} from './errors.js';
+} from './errors';
 
 const ctx = { provider: 'yahoo', operation: 'getOptionsChain', symbol: 'AAPL' };
 

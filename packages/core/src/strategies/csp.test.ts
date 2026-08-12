@@ -4,10 +4,10 @@ import {
   evaluateCsp,
   ivRankFilterActive,
   scanCsp,
-} from './csp.js';
-import type { ContractSnapshot, ScanContext } from './types.js';
-import { classifyMarketRegime } from '../regime/market-regime.js';
-import { ivHvRatio, ivRank } from '../volatility/iv-rank.js';
+} from './csp';
+import type { ContractSnapshot, ScanContext } from './types';
+import { classifyMarketRegime } from '../regime/market-regime';
+import { ivHvRatio, ivRank } from '../volatility/iv-rank';
 
 const NOW = new Date('2026-08-07T18:00:00.000Z');
 const EXPIRATION = new Date('2026-08-21T20:00:00.000Z');

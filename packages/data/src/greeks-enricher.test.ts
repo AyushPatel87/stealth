@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { enrichContract, enrichContracts } from './greeks-enricher.js';
-import type { OptionContract } from './models.js';
+import { enrichContract, enrichContracts } from './greeks-enricher';
+import type { OptionContract } from './models';
 
 const NOW = new Date('2026-08-07T20:00:00.000Z');
 const EXPIRATION = new Date('2026-08-21T20:00:00.000Z');

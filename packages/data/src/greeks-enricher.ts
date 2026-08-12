@@ -25,7 +25,7 @@ import {
   premiumEstimate,
   type Greeks,
 } from '@stealth/core';
-import type { OptionContract } from './models.js';
+import type { OptionContract } from './models';
 
 export interface EnrichmentContext {
   /** Current underlying price. */

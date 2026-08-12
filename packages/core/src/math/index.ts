@@ -1,1 +1,1 @@
-export { normCdf, normPdf, normInv } from './normal.js';
+export { normCdf, normPdf, normInv } from './normal';

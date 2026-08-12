@@ -5,7 +5,7 @@ import {
   ivRank,
   volatilityRichnessLabel,
   type IvObservation,
-} from './iv-rank.js';
+} from './iv-rank';
 
 function history(values: readonly number[]): IvObservation[] {
   return values.map((iv, i) => ({

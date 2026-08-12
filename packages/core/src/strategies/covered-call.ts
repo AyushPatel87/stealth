@@ -28,8 +28,8 @@ import {
   premiumYield,
   shortOptionBreakeven,
   yearsToExpiry,
-} from '../options/index.js';
-import { regimeMultiplier, type RegimeBias } from '../regime/market-regime.js';
+} from '../options/index';
+import { regimeMultiplier, type RegimeBias } from '../regime/market-regime';
 import {
   assembleScore,
   linear,
@@ -37,14 +37,14 @@ import {
   plateau,
   type RawComponent,
   type ScoreResult,
-} from '../scoring/score.js';
+} from '../scoring/score';
 import {
   DEFAULT_LIQUIDITY,
   type ContractSnapshot,
   type LiquidityFilterConfig,
   type Rejection,
   type ScanContext,
-} from './types.js';
+} from './types';
 
 export interface CoveredCallWeights {
   readonly premiumIv: number;

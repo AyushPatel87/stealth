@@ -20,19 +20,19 @@ import {
   MissingDataError,
   ProviderUnavailableError,
   RateLimitedError,
-} from '../../errors.js';
+} from '../../errors';
 import type {
   EarningsEvent,
   ExpirationList,
   HistoricalSeries,
   OptionChain,
   Quote,
-} from '../../models.js';
+} from '../../models';
 import type {
   HistoricalRequest,
   MarketDataProvider,
   ProviderCapabilities,
-} from '../../provider.js';
+} from '../../provider';
 import {
   YAHOO_PROVIDER_ID,
   buildProvenance,
@@ -41,8 +41,8 @@ import {
   normalizeEarnings,
   normalizeQuote,
   optionalNumber,
-} from './normalize.js';
-import type { YahooClient } from './wire.js';
+} from './normalize';
+import type { YahooClient } from './wire';
 
 export const YAHOO_CAPABILITIES: ProviderCapabilities = {
   quotes: true,

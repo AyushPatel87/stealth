@@ -7,7 +7,7 @@
  * bias that takes several periods to wash out - visible and wrong on a 200 EMA.
  */
 
-import type { IndicatorSeries } from './types.js';
+import type { IndicatorSeries } from './types';
 
 /** Simple moving average over `period` values. */
 export function sma(values: readonly number[], period: number): IndicatorSeries {

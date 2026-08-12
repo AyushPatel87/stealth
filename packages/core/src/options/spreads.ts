@@ -16,7 +16,7 @@
  * top of the rankings.
  */
 
-import { blackScholes } from './black-scholes.js';
+import { blackScholes } from './black-scholes';
 
 export type SpreadKind = 'put-credit' | 'call-credit';
 

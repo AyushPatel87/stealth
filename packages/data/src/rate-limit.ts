@@ -11,8 +11,8 @@
  * tested deterministically rather than by actually waiting.
  */
 
-import { RateLimitedError, isProviderError } from './errors.js';
-import type { Clock } from './cache.js';
+import { RateLimitedError, isProviderError } from './errors';
+import type { Clock } from './cache';
 
 export type Sleep = (ms: number) => Promise<void>;
 

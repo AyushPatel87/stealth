@@ -6,7 +6,7 @@ import {
   classifyMarketRegime,
   regimeMultiplier,
   type RegimeInputs,
-} from './market-regime.js';
+} from './market-regime';
 
 const bullish: RegimeInputs = {
   spy: { price: 600, ema20: 595, ema50: 585, ema200: 550 },

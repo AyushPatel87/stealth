@@ -18,7 +18,7 @@ import {
   blackScholesPrice,
   type OptionRight,
   blackScholes,
-} from './black-scholes.js';
+} from './black-scholes';
 
 export interface ImpliedVolInputs {
   /** Observed option price (typically the bid/ask mid). */

@@ -1,25 +1,25 @@
-import { ema } from './moving-averages.js';
-import { rateOfChange, rsi, trailingReturn } from './momentum.js';
-import { atr, atrPercent, historicalVolatility } from './volatility.js';
+import { ema } from './moving-averages';
+import { rateOfChange, rsi, trailingReturn } from './momentum';
+import { atr, atrPercent, historicalVolatility } from './volatility';
 import {
   supportResistance,
   trailingRange,
   vwap,
   type SupportResistance,
   type PriceRange,
-} from './levels.js';
-import { classifyTrend, type TrendAssessment } from './trend.js';
-import { assertBars, latest, type Bar } from './types.js';
+} from './levels';
+import { classifyTrend, type TrendAssessment } from './trend';
+import { assertBars, latest, type Bar } from './types';
 
-export { sma, ema, wilderSmooth } from './moving-averages.js';
-export { rsi, rateOfChange, trailingReturn } from './momentum.js';
+export { sma, ema, wilderSmooth } from './moving-averages';
+export { rsi, rateOfChange, trailingReturn } from './momentum';
 export {
   atr,
   atrPercent,
   trueRange,
   historicalVolatility,
   TRADING_DAYS_PER_YEAR,
-} from './volatility.js';
+} from './volatility';
 export {
   supportResistance,
   swingHighs,
@@ -30,14 +30,14 @@ export {
   type SupportResistance,
   type PriceRange,
   type SwingOptions,
-} from './levels.js';
+} from './levels';
 export {
   classifyTrend,
   type TrendAssessment,
   type TrendLabel,
   type TrendInputs,
-} from './trend.js';
-export { latest, assertBars, type Bar, type IndicatorSeries } from './types.js';
+} from './trend';
+export { latest, assertBars, type Bar, type IndicatorSeries } from './types';
 
 /**
  * Everything the strategy and scoring engines need from price history, computed

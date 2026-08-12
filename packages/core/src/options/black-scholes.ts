@@ -26,7 +26,7 @@
  * unscaled per-annum / per-unit values for anyone doing further calculus.
  */
 
-import { normCdf, normPdf } from '../math/normal.js';
+import { normCdf, normPdf } from '../math/normal';
 
 export type OptionRight = 'call' | 'put';
 

@@ -2,8 +2,8 @@
  * Volatility measures: Average True Range and historical (realised) volatility.
  */
 
-import { wilderSmooth } from './moving-averages.js';
-import type { Bar, IndicatorSeries } from './types.js';
+import { wilderSmooth } from './moving-averages';
+import type { Bar, IndicatorSeries } from './types';
 
 /** Trading days per year, the standard annualisation factor for realised vol. */
 export const TRADING_DAYS_PER_YEAR = 252;

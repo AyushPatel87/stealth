@@ -15,8 +15,9 @@
  * defeat the entire point of the application.
  *
  * Because the chain is priced by the same model the scanner uses, the numbers
- * are internally consistent - a realistic shape - but the volatility surface is
- * flat, which real chains never are.
+ * are internally consistent. A linear volatility skew is applied so far strikes
+ * are not underpriced relative to a real surface, but it remains a crude
+ * approximation of one.
  */
 
 import { blackScholes, expirationInstant, yearsToExpiry } from '@stealth/core';
@@ -26,7 +27,7 @@ import type { ContractSnapshot } from '@stealth/core';
 export interface SampleUnderlying {
   readonly symbol: string;
   readonly spot: number;
-  /** Flat implied volatility used to price the whole chain. */
+  /** At-the-money implied volatility; skew is applied per strike. */
   readonly impliedVolatility: number;
   /** Realised volatility of the generated price history. */
   readonly bars: readonly Bar[];
@@ -96,7 +97,32 @@ export function sampleBars(
 }
 
 /**
- * Builds a put chain priced by Black-Scholes at a flat volatility.
+ * Equity volatility skew.
+ *
+ * Real put chains are not priced at a single volatility: implied volatility
+ * rises as strikes fall, because downside protection is bid up. Pricing a flat
+ * surface made adjacent strikes differ by less than their own bid/ask spread,
+ * so every generated credit spread came out below the minimum credit-to-width
+ * floor and the PCS and CCS tabs returned nothing. That was the sample data
+ * being unrepresentative, not the spread engine rejecting wrongly.
+ *
+ * A linear skew in moneyness is crude next to a real surface, but it restores
+ * the property that actually matters here: strikes further out of the money
+ * carry proportionally more premium than a flat surface implies.
+ */
+const SKEW_SLOPE = 0.9;
+
+function skewedVolatility(
+  atmVolatility: number,
+  spot: number,
+  strike: number,
+): number {
+  const moneyness = (spot - strike) / spot;
+  return Math.max(0.03, atmVolatility * (1 + SKEW_SLOPE * moneyness));
+}
+
+/**
+ * Builds a put chain priced by Black-Scholes with a volatility skew.
  *
  * Bid/ask are placed symmetrically around theoretical value with a spread that
  * widens as the contract goes further out of the money, which is the one
@@ -117,11 +143,12 @@ export function samplePutChain(
   const highest = Math.round((spot * 1.02) / step) * step;
 
   for (let strike = lowest; strike <= highest; strike += step) {
+    const contractIv = skewedVolatility(impliedVolatility, spot, strike);
     const priced = blackScholes({
       spot,
       strike,
       timeToExpiry: years,
-      volatility: impliedVolatility,
+      volatility: contractIv,
       riskFreeRate: RISK_FREE,
       right: 'put',
     });
@@ -152,7 +179,7 @@ export function samplePutChain(
       last: roundCents(theoretical),
       volume,
       openInterest,
-      impliedVolatility,
+      impliedVolatility: contractIv,
       delta: priced.delta,
       theta: priced.theta,
       vega: priced.vega,

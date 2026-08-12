@@ -13,13 +13,13 @@ import type {
   OptionContract,
   Provenance,
   Quote,
-} from '../../models.js';
+} from '../../models';
 import type {
   YahooCallOrPut,
   YahooChartResult,
   YahooQuoteLike,
   YahooQuoteSummaryResult,
-} from './wire.js';
+} from './wire';
 
 export const YAHOO_PROVIDER_ID = 'yahoo';
 

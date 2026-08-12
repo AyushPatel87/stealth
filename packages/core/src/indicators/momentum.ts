@@ -2,7 +2,7 @@
  * Momentum indicators: RSI, rate of change, and trailing returns.
  */
 
-import type { IndicatorSeries } from './types.js';
+import type { IndicatorSeries } from './types';
 
 /**
  * Relative Strength Index using Wilder's smoothing (the standard definition).

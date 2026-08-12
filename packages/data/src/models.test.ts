@@ -5,7 +5,7 @@ import {
   effectiveAgeMs,
   type EarningsEvent,
   type Provenance,
-} from './models.js';
+} from './models';
 
 function provenance(
   fetchedAt: string,

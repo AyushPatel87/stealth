@@ -7,7 +7,7 @@ export {
   type RejectionReason,
   type Rejection,
   type LiquidityFilterConfig,
-} from './types.js';
+} from './types';
 
 export {
   evaluateCsp,
@@ -21,7 +21,7 @@ export {
   type CspCandidate,
   type CspOutcome,
   type CspScanSummary,
-} from './csp.js';
+} from './csp';
 
 export {
   evaluateCoveredCall,
@@ -35,7 +35,7 @@ export {
   type CoveredCallOutcome,
   type CoveredCallScanSummary,
   type Holding,
-} from './covered-call.js';
+} from './covered-call';
 
 export {
   evaluateCreditSpread,
@@ -48,4 +48,4 @@ export {
   type CreditSpreadCandidate,
   type CreditSpreadOutcome,
   type CreditSpreadScanSummary,
-} from './credit-spread.js';
+} from './credit-spread';

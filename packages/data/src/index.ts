@@ -10,7 +10,7 @@ export {
   isRetryable,
   type ProviderErrorKind,
   type ProviderErrorContext,
-} from './errors.js';
+} from './errors';
 
 export {
   earningsBeforeExpiration,
@@ -27,14 +27,14 @@ export {
   type ExpirationList,
   type EarningsTiming,
   type EarningsEvent,
-} from './models.js';
+} from './models';
 
 export {
   NO_CAPABILITIES,
   type MarketDataProvider,
   type ProviderCapabilities,
   type HistoricalRequest,
-} from './provider.js';
+} from './provider';
 
 export {
   TtlCache,
@@ -44,7 +44,7 @@ export {
   type CacheHit,
   type CacheClass,
   type TtlCacheOptions,
-} from './cache.js';
+} from './cache';
 
 export {
   RateLimiter,
@@ -54,25 +54,25 @@ export {
   type Sleep,
   type RateLimiterOptions,
   type RetryOptions,
-} from './rate-limit.js';
+} from './rate-limit';
 
 export {
   enrichContract,
   enrichContracts,
   type EnrichmentContext,
   type EnrichmentStats,
-} from './greeks-enricher.js';
+} from './greeks-enricher';
 
 export {
   YahooProvider,
   YAHOO_CAPABILITIES,
   type YahooProviderOptions,
-} from './providers/yahoo/yahoo-provider.js';
+} from './providers/yahoo/yahoo-provider';
 
 export {
   createYahooClient,
   type RealYahooClientOptions,
-} from './providers/yahoo/real-client.js';
+} from './providers/yahoo/real-client';
 
 export {
   YAHOO_PROVIDER_ID,
@@ -83,7 +83,7 @@ export {
   inferEarningsTiming,
   optionalNumber,
   buildProvenance,
-} from './providers/yahoo/normalize.js';
+} from './providers/yahoo/normalize';
 
 export type {
   YahooClient,
@@ -92,4 +92,4 @@ export type {
   YahooChartResult,
   YahooQuoteLike,
   YahooQuoteSummaryResult,
-} from './providers/yahoo/wire.js';
+} from './providers/yahoo/wire';

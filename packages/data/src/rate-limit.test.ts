@@ -1,10 +1,10 @@
 import { describe, expect, it, vi } from 'vitest';
-import { RateLimiter, withRetry, YAHOO_RATE_LIMIT } from './rate-limit.js';
+import { RateLimiter, withRetry, YAHOO_RATE_LIMIT } from './rate-limit';
 import {
   MissingDataError,
   ProviderUnavailableError,
   RateLimitedError,
-} from './errors.js';
+} from './errors';
 
 const ctx = { provider: 'yahoo', operation: 'getQuote', symbol: 'AAPL' };
 

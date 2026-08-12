@@ -4,7 +4,7 @@ import {
   daysToExpiry,
   expirationInstant,
   yearsToExpiry,
-} from './expiry.js';
+} from './expiry';
 
 describe('expirationInstant', () => {
   it('resolves to 16:00 New York during Eastern Standard Time (UTC-5)', () => {

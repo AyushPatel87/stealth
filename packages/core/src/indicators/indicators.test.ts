@@ -1,21 +1,21 @@
 import { describe, expect, it } from 'vitest';
-import { ema, sma, wilderSmooth } from './moving-averages.js';
-import { rateOfChange, rsi, trailingReturn } from './momentum.js';
+import { ema, sma, wilderSmooth } from './moving-averages';
+import { rateOfChange, rsi, trailingReturn } from './momentum';
 import {
   atr,
   atrPercent,
   historicalVolatility,
   trueRange,
-} from './volatility.js';
+} from './volatility';
 import {
   supportResistance,
   swingHighs,
   swingLows,
   trailingRange,
   vwap,
-} from './levels.js';
-import { classifyTrend } from './trend.js';
-import { assertBars, latest, type Bar } from './types.js';
+} from './levels';
+import { classifyTrend } from './trend';
+import { assertBars, latest, type Bar } from './types';
 
 /**
  * A deterministic synthetic close series. Reference values below were produced

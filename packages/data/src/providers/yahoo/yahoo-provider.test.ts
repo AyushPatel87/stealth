@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import { YahooProvider } from './yahoo-provider.js';
+import { YahooProvider } from './yahoo-provider';
 import {
   inferEarningsTiming,
   normalizeBars,
@@ -7,20 +7,20 @@ import {
   normalizeEarnings,
   normalizeQuote,
   optionalNumber,
-} from './normalize.js';
+} from './normalize';
 import type {
   YahooCallOrPut,
   YahooChartResult,
   YahooClient,
   YahooOptionsResult,
   YahooQuoteLike,
-} from './wire.js';
+} from './wire';
 import {
   InvalidResponseError,
   MissingDataError,
   ProviderUnavailableError,
   RateLimitedError,
-} from '../../errors.js';
+} from '../../errors';
 
 const FETCHED_AT = new Date('2026-08-07T18:30:00.000Z');
 const EXPIRATION = new Date('2026-08-21T20:00:00.000Z');

@@ -9,7 +9,7 @@ import {
   premiumYield,
   shortOptionBreakeven,
   sigmasFromSpot,
-} from './metrics.js';
+} from './metrics';
 
 describe('premiumEstimate', () => {
   it('computes mid, conservative and spread from a two-sided market', () => {

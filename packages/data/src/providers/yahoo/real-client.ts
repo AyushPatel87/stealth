@@ -36,7 +36,7 @@ import type {
   YahooOptionsResult,
   YahooQuoteLike,
   YahooQuoteSummaryResult,
-} from './wire.js';
+} from './wire';
 
 export interface RealYahooClientOptions {
   /**

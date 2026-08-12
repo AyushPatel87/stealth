@@ -8,7 +8,7 @@
  * is meaningfully different from one touched once.
  */
 
-import type { Bar } from './types.js';
+import type { Bar } from './types';
 
 export interface PriceLevel {
   /** Representative price for the cluster (volume-agnostic mean of pivots). */

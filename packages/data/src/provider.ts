@@ -18,7 +18,7 @@ import type {
   HistoricalSeries,
   OptionChain,
   Quote,
-} from './models.js';
+} from './models';
 
 export interface ProviderCapabilities {
   readonly quotes: boolean;

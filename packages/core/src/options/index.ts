@@ -7,7 +7,7 @@ export {
   type BsmResult,
   type Greeks,
   type OptionRight,
-} from './black-scholes.js';
+} from './black-scholes';
 
 export {
   impliedVolatility,
@@ -16,7 +16,7 @@ export {
   type ImpliedVolResult,
   type ImpliedVolOutcome,
   type ImpliedVolFailure,
-} from './implied-volatility.js';
+} from './implied-volatility';
 
 export {
   expirationInstant,
@@ -24,7 +24,7 @@ export {
   calendarDte,
   yearsToExpiry,
   DAYS_PER_YEAR,
-} from './expiry.js';
+} from './expiry';
 
 export {
   premiumEstimate,
@@ -40,7 +40,7 @@ export {
   type PremiumEstimate,
   type PremiumSource,
   type ExpectedMove,
-} from './metrics.js';
+} from './metrics';
 
 export {
   verticalCreditSpread,
@@ -52,4 +52,4 @@ export {
   type SpreadOutcome,
   type SpreadRejection,
   type ProbabilityOfProfitInputs,
-} from './spreads.js';
+} from './spreads';

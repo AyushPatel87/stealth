@@ -8,8 +8,8 @@
  * yields are closer to what actually fills.
  */
 
-import type { OptionRight } from './black-scholes.js';
-import { DAYS_PER_YEAR } from './expiry.js';
+import type { OptionRight } from './black-scholes';
+import { DAYS_PER_YEAR } from './expiry';
 
 /**
  * A raw contract quote. `bid`, `ask` and `last` are all optional because

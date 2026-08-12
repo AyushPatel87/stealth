@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { computeIndicators } from './index.js';
-import type { Bar } from './types.js';
+import { computeIndicators } from './index';
+import type { Bar } from './types';
 
 /** A 260-bar uptrending series, long enough to populate a 200 EMA. */
 function uptrendBars(count = 260): Bar[] {

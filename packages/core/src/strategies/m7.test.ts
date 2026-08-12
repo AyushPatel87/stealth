@@ -3,16 +3,16 @@ import {
   DEFAULT_CC_CONFIG,
   evaluateCoveredCall,
   scanCoveredCalls,
-} from './covered-call.js';
+} from './covered-call';
 import {
   DEFAULT_SPREAD_CONFIG,
   evaluateCreditSpread,
   scanCreditSpreads,
-} from './credit-spread.js';
-import type { ContractSnapshot, ScanContext } from './types.js';
-import { classifyMarketRegime } from '../regime/market-regime.js';
-import { ivHvRatio, ivRank } from '../volatility/iv-rank.js';
-import { blackScholes, yearsToExpiry } from '../options/index.js';
+} from './credit-spread';
+import type { ContractSnapshot, ScanContext } from './types';
+import { classifyMarketRegime } from '../regime/market-regime';
+import { ivHvRatio, ivRank } from '../volatility/iv-rank';
+import { blackScholes, yearsToExpiry } from '../options/index';
 
 const NOW = new Date('2026-08-07T18:00:00.000Z');
 const EXPIRATION = new Date('2026-08-21T20:00:00.000Z');

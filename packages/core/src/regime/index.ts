@@ -14,4 +14,4 @@ export {
   type IndexSnapshot,
   type VixSnapshot,
   type StrategyKey,
-} from './market-regime.js';
+} from './market-regime';

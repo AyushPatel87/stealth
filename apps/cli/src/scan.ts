@@ -41,7 +41,7 @@ import {
   SAMPLE_UNIVERSE,
   sampleBars,
   samplePutChain,
-} from './sample-chain.js';
+} from './sample-chain';
 
 // ---------------------------------------------------------------------------
 // Terminal rendering

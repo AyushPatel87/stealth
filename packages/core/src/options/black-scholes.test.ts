@@ -5,7 +5,7 @@ import {
   rawGreeks,
   type BsmInputs,
   type OptionRight,
-} from './black-scholes.js';
+} from './black-scholes';
 
 /**
  * Reference values were produced by an independently-written Python

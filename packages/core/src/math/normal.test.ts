@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { normCdf, normInv, normPdf } from './normal.js';
+import { normCdf, normInv, normPdf } from './normal';
 
 /**
  * Reference values were generated independently from this implementation using

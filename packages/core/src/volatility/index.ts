@@ -8,4 +8,4 @@ export {
   type IvRankOptions,
   type IvRankResult,
   type IvHvRatioResult,
-} from './iv-rank.js';
+} from './iv-rank';

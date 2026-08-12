@@ -6,9 +6,9 @@
  * boundary. Everything nullable is genuinely nullable in practice.
  */
 
-import type { OptionRight } from '../options/black-scholes.js';
-import type { RegimeAssessment } from '../regime/market-regime.js';
-import type { IvHvRatioResult, IvRankResult } from '../volatility/iv-rank.js';
+import type { OptionRight } from '../options/black-scholes';
+import type { RegimeAssessment } from '../regime/market-regime';
+import type { IvHvRatioResult, IvRankResult } from '../volatility/iv-rank';
 
 export interface ContractSnapshot {
   readonly occSymbol: string | null;

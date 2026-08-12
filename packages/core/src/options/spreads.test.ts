@@ -4,7 +4,7 @@ import {
   probabilityOfProfit,
   verticalCreditSpread,
   type VerticalSpreadMetrics,
-} from './spreads.js';
+} from './spreads';
 
 function unwrap(outcome: ReturnType<typeof verticalCreditSpread>) {
   if (!outcome.ok) {
